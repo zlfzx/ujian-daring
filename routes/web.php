@@ -22,3 +22,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+Route::group(['prefix' => '{slugAdmin}', 'middleware' => ['admin'], 'namespace' => 'Admin'], function() {
+    Route::get('/', 'DashboardController@index');
+});
