@@ -38,7 +38,7 @@ return [
     /*
      * DataTables internal index id response column name.
      */
-    'index_column'   => 'DT_RowIndex',
+    'index_column'   => 'index',
 
     /*
      * List of available builders for DataTables.
