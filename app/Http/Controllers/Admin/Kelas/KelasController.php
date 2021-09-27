@@ -24,8 +24,8 @@ class KelasController extends Controller
         return DataTables::of(Kelas::query())
             ->addIndexColumn()
             ->addColumn('opsi', function ($data) {
-                return '<button class="btn btn-xs btn-outline-warning"><i class="fas fa-edit"></i> Edit</button>
-                <button class="btn btn-xs btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>';
+                return '<button class="btn btn-xs btn-outline-warning btn-edit" data-id="'.$data->id.'" data-nama="'.$data->nama.'"><i class="fas fa-edit"></i> Edit</button>
+                <button class="btn btn-xs btn-outline-danger" data-id="'.$data->id.'"><i class="fas fa-trash"></i> Hapus</button>';
             })
             ->rawColumns(['opsi'])
             ->make(true);
@@ -80,7 +80,7 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $kelas = Kelas::where('id', $id)->update($request->all());
+        $kelas = Kelas::where('id', $id)->update($request->except('_method'));
 
         return response()->json([
             'status' => TRUE,

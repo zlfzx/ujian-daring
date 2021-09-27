@@ -22,30 +22,3 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-
-
-Route::group(['prefix' => '{slugAdmin}', 'middleware' => ['admin'], 'namespace' => 'Admin'], function() {
-    Route::get('/', 'DashboardController@index');
-
-    // Kelas
-    Route::match(['get', 'post'], 'kelas/datatable', 'Kelas\KelasController@dataTable');
-    Route::match(['get', 'post'], 'kelas/select2', 'Kelas\KelasController@select2');
-    Route::apiResource('kelas', 'Kelas\KelasController', [
-        'parameters' => [
-            'kelas' => 'kelas'
-        ]
-    ]);
-
-    // Rombel
-    Route::match(['get', 'post'], 'rombel/datatable', 'Rombel\RombelController@dataTable');
-    Route::match(['get', 'post'], 'rombel/select2', 'Rombel\RombelController@select2');
-    Route::apiResource('rombel', 'Rombel\RombelController');
-
-    // Siswa
-    Route::match(['get', 'post'], 'siswa/datatable', 'Siswa\SiswaController@dataTable');
-    Route::apiResource('siswa', 'Siswa\SiswaController');
-
-    // Mapel
-    Route::match(['get', 'post'], 'mapel/datatable', 'Mapel\MapelController@dataTable');
-    Route::apiResource('mapel', 'Mapel\MapelController');
-});

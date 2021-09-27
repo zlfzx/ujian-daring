@@ -97,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 {{-- Select2 --}}
 <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
 <script>
-    const URL_ADMIN = "{{ url($pengaturan->slug_admin) }}"
+    const URL_ADMIN = "{{ request()->root() . '/' . request()->segment(1) }}"
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

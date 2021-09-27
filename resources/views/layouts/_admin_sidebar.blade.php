@@ -27,7 +27,7 @@
                     DATA MASTER
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('kelas.index', ['slugAdmin' => $pengaturan->slug_admin]) }}" class="nav-link">
+                    <a href="{{ route('kelas.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Kelas
@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('rombel.index', ['slugAdmin' => $pengaturan->slug_admin]) }}" class="nav-link">
+                    <a href="{{ route('rombel.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Rombel
@@ -45,7 +45,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('siswa.index', ['slugAdmin' => $pengaturan->slug_admin]) }}" class="nav-link">
+                    <a href="{{ route('siswa.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Siswa
@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('mapel.index', ['slugAdmin' => $pengaturan->slug_admin]) }}" class="nav-link">
+                    <a href="{{ route('mapel.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Mata Pelajaran

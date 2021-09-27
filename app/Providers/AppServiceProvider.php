@@ -25,8 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $pengaturan = Pengaturan::first();
-
-        view()->share('pengaturan', $pengaturan);
+        //
     }
 }

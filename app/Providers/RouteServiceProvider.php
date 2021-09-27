@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Pengaturan;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -35,9 +36,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $pengaturan = Pengaturan::first();
+
         $this->configureRateLimiting();
 
-        $this->routes(function () {
+        $this->routes(function () use ($pengaturan) {
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
@@ -46,6 +49,11 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+            Route::prefix($pengaturan->slug_admin)
+                ->middleware('web')
+                ->namespace($this->namespace . '\Admin')
+                ->group(base_path('routes/admin.php'));
         });
     }
 

@@ -56,7 +56,9 @@
                 <h4 class="modal-title">Edit Kelas</h4>
                 <button class="close" data-dismiss="modal">&times;</button>
             </div>
-            <form id="formTambah">
+            <form id="formEdit">
+                @method('PUT')
+                <input type="hidden" id="editId">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="editNama">Nama Kelas</label>
@@ -106,5 +108,36 @@
             }
         })
     })
+
+    // Edit Kelas
+    const modalEdit = $('#modalEdit')
+    const formEdit = document.getElementById('formEdit')
+    $(document).on('click', '.btn-edit', function () {
+        const data = $(this).data()
+
+        $('#editId').val(data.id)
+        $('#editNama').val(data.nama)
+
+        modalEdit.modal('show')
+    })
+
+    formEdit.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const id = document.getElementById('editId').value
+        const form = new FormData(this)
+
+        $.post({
+            url: URL_ADMIN + '/kelas/' + id,
+            processData: false,
+            contentType: false,
+            data: form,
+            success: function (res) {
+                Swal.fire('Berhasil', 'Kelas berhasil diperbarui', 'success')
+                table.draw()
+                modalEdit.modal('hide')
+            }
+        })
+    })
+
 </script>
 @endpush
