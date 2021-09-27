@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="card">
             <div class="card-header">
                 <div class="card-tools">
@@ -61,7 +61,8 @@
                 <h4 class="modal-title">Edit Rombel</h4>
                 <button class="close" data-dismiss="modal">&times;</button>
             </div>
-            <form id="formTambah">
+            <form id="formEdit">
+                <input type="hidden" id="editId">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="editKelas">Kelas</label>
@@ -115,6 +116,7 @@
     const modalTambah = $('#modalTambah')
     $('#formTambah').on('submit', function (e) {
         e.preventDefault();
+        const formTambah = $(this)
         const form = new FormData(this)
 
         $.post({
@@ -123,10 +125,67 @@
             contentType: false,
             data: form,
             success: function (res) {
-                $(this).trigger('reset')
+                formTambah.trigger('reset')
                 modalTambah.modal('hide')
                 Swal.fire('Berhasil', 'Rombel berhasil ditambahkan', 'success')
                 table.draw()
+            }
+        })
+    })
+
+    // Edit Rombel
+    const modalEdit = $('#modalEdit')
+    $(document).on('click', '.btn-edit', function () {
+        const data = $(this).data()
+
+        const option = new Option(data.kelasNama, data.kelasId, true, true)
+        $('#editId').val(data.id)
+        $('#editKelas').append(option).trigger('change')
+        $('#editNama').val(data.nama)
+
+        modalEdit.modal('show')
+    })
+    $('#formEdit').on('submit', function (e) {
+        e.preventDefault()
+        const form = new FormData(this)
+        form.append('_method', 'PUT')
+
+        $.post({
+            url: URL_ADMIN + '/rombel/' + $('#editId').val(),
+            processData: false,
+            contentType: false,
+            data: form,
+            success: function (res) {
+                Swal.fire('Berhasil', 'Rombongan Belajar berhasil diperbarui', 'success')
+                table.draw()
+                modalEdit.modal('hide')
+            }
+        })
+    })
+
+    // Hapus rombel
+    $(document).on('click', '.btn-hapus', function () {
+        const data = $(this).data()
+
+        Swal.fire({
+            title: "Hapus Rombongan Belajar?",
+            icon: "question",
+            html: '<div class="alert alert-danger">Menghapus Rombel akan menghapus data lainnya  yang terkait</div>',
+            showCancelButton: true,
+            cancelButtonText: "Tidak",
+            confirmButtonText: "Ya, hapus!"
+        }).then(hapus => {
+            if (hapus.value) {
+                $.ajax({
+                    url: URL_ADMIN + '/rombel/' + data.id,
+                    type: 'DELETE',
+                    success: function (res) {
+                        if (res.status) {
+                            Swal.fire('Berhasil', 'Rombongan Belajar berhasil dihapus', 'success')
+                            table.draw()
+                        }
+                    }
+                })
             }
         })
     })

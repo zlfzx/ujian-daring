@@ -25,7 +25,7 @@ class KelasController extends Controller
             ->addIndexColumn()
             ->addColumn('opsi', function ($data) {
                 return '<button class="btn btn-xs btn-outline-warning btn-edit" data-id="'.$data->id.'" data-nama="'.$data->nama.'"><i class="fas fa-edit"></i> Edit</button>
-                <button class="btn btn-xs btn-outline-danger" data-id="'.$data->id.'"><i class="fas fa-trash"></i> Hapus</button>';
+                <button class="btn btn-xs btn-outline-danger btn-hapus" data-id="'.$data->id.'"><i class="fas fa-trash"></i> Hapus</button>';
             })
             ->rawColumns(['opsi'])
             ->make(true);

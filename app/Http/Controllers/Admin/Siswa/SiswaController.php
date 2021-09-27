@@ -25,8 +25,8 @@ class SiswaController extends Controller
         return DataTables::of(Siswa::with('rombel'))
             ->addIndexColumn()
             ->addColumn('opsi', function ($data) {
-                return '<button class="btn btn-xs btn-outline-warning"><i class="fas fa-edit"></i> Edit</button>
-                <button class="btn btn-xs btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>';
+                return '<button class="btn btn-xs btn-outline-warning btn-edit" data-id="'.$data->id.'" data-rombel-id="'.$data->rombel->id.'" data-rombel-nama="'.$data->rombel->nama.'" data-nama="'.$data->nama.'" data-nis="'.$data->nis.'" data-jenis-kelamin="'.$data->jenis_kelamin.'"><i class="fas fa-edit"></i> Edit</button>
+                <button class="btn btn-xs btn-outline-danger btn-hapus" data-id="'.$data->id.'"><i class="fas fa-trash"></i> Hapus</button>';
             })
             ->rawColumns(['opsi'])
             ->make(true);
@@ -75,7 +75,13 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $siswa = Siswa::where('id', $id)->update($request->all());
+        $data = $request->except('_method');
+
+        if ($request->has('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $siswa = Siswa::where('id', $id)->update($data);
 
         return response()->json([
             'status' => TRUE,

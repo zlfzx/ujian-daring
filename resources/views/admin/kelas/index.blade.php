@@ -139,5 +139,32 @@
         })
     })
 
+    // Hapus Kelas
+    $(document).on('click', '.btn-hapus', function () {
+        const data = $(this).data()
+
+        Swal.fire({
+            title: "Hapus Kelas?",
+            html: '<div class="alert alert-danger">Menghapus kelas akan menghapus data lainnya yang terkait</div>',
+            icon: "question",
+            showCancelButton: true,
+            cancelButtonText: "Tidak",
+            confirmButtonText: "Ya, hapus!"
+        }).then(hapus => {
+            if (hapus.value) {
+                $.ajax({
+                    url: URL_ADMIN + '/kelas/' + data.id,
+                    type: "DELETE",
+                    success: function (res) {
+                        if (res.status) {
+                            Swal.fire("Berhasil", 'Kelas berhasil dihapus', 'success')
+                            table.draw()
+                        }
+                    }
+                })
+            }
+        })
+    })
+
 </script>
 @endpush

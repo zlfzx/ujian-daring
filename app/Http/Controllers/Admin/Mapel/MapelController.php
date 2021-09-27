@@ -24,8 +24,8 @@ class MapelController extends Controller
         return DataTables::of(Mapel::query())
             ->addIndexColumn()
             ->addColumn('opsi', function ($data) {
-                return '<button class="btn btn-xs btn-outline-warning"><i class="fas fa-edit"></i> Edit</button>
-                <button class="btn btn-xs btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>';
+                return '<button class="btn btn-xs btn-outline-warning btn-edit" data-id="'.$data->id.'" data-kode="'.$data->kode.'" data-nama="'.$data->nama.'"><i class="fas fa-edit"></i> Edit</button>
+                <button class="btn btn-xs btn-outline-danger btn-hapus" data-id="'.$data->id.'"><i class="fas fa-trash"></i> Hapus</button>';
             })
             ->rawColumns(['opsi'])
             ->make(true);
@@ -53,9 +53,12 @@ class MapelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Mapel $mapel)
     {
-        //
+        return response()->json([
+            'status' => TRUE,
+            'data' => $mapel
+        ], 200);
     }
 
     /**
@@ -67,7 +70,12 @@ class MapelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mapel = Mapel::where('id', $id)->update($request->except('_method'));
+
+        return response()->json([
+            'status' => TRUE,
+            'data' => $mapel
+        ], 200);
     }
 
     /**
@@ -76,8 +84,12 @@ class MapelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Mapel $mapel)
     {
-        //
+        $mapel->delete();
+
+        return response()->json([
+            'status' => TRUE
+        ], 200);
     }
 }
