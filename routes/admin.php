@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'DashboardController@index');
+Route::get('/', 'DashboardController@index')->name('admin.index');
 
 // Kelas
 Route::match(['get', 'post'], 'kelas/datatable', 'Kelas\KelasController@dataTable');

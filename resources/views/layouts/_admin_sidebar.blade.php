@@ -1,9 +1,9 @@
 <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link navbar-primary">
-        {{-- <img src="/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8"> --}}
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <a href="{{ route('admin.index') }}" class="brand-link navbar-primary">
+        <img src="/assets/img/logo.svg" alt="AdminLTE Logo" class="brand-image img-circle"
+           style="opacity: .8">
+        <span class="brand-text text-light">{{ $pengaturan->nama_institusi }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -27,38 +27,34 @@
                     DATA MASTER
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('kelas.index') }}" class="nav-link">
+                    <a href="{{ route('kelas.index') }}" class="nav-link {{ request()->routeIs('kelas.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Kelas
-                            <span class="right badge badge-danger">0</span>
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('rombel.index') }}" class="nav-link">
+                    <a href="{{ route('rombel.index') }}" class="nav-link {{ request()->routeIs('rombel.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Rombel
-                            <span class="right badge badge-danger">0</span>
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('siswa.index') }}" class="nav-link">
+                    <a href="{{ route('siswa.index') }}" class="nav-link {{ request()->routeIs('siswa.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Siswa
-                            <span class="right badge badge-danger">0</span>
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('mapel.index') }}" class="nav-link">
+                    <a href="{{ route('mapel.index') }}" class="nav-link {{ request()->routeIs('mapel.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Mata Pelajaran
-                            <span class="right badge badge-danger">0</span>
                         </p>
                     </a>
                 </li>
