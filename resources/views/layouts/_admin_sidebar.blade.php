@@ -63,11 +63,10 @@
                     BANK SOAL
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('paket-soal.index') }}" class="nav-link {{ request()->routeIs('paket-soal.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                             Paket Soal
-                            <span class="right badge badge-danger">0</span>
                         </p>
                     </a>
                 </li>

@@ -113,7 +113,8 @@
 @endsection
 
 @push('script')
-<script>
+<script src="{{ asset('js/admin/siswa.js') }}"></script>
+{{-- <script>
     const table = $('#table').DataTable({
         processing: true,
         serverSide: true,
@@ -222,5 +223,5 @@
             }
         })
     })
-</script>
+</script> --}}
 @endpush

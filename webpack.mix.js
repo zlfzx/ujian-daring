@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const resource = 'resources/js/';
 
 /*
  |--------------------------------------------------------------------------
@@ -16,3 +17,19 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('tailwindcss'),
     require('autoprefixer'),
 ]);
+
+/*
+ | Admin
+*/
+
+// Kelas
+mix.js(resource + 'admin/kelas.js', 'public/js/admin/kelas.js');
+
+// Rombel
+mix.js(resource + 'admin/rombel.js', 'public/js/admin/rombel.js');
+
+// Siswa
+mix.js(resource + 'admin/siswa.js', 'public/js/admin/siswa.js');
+
+// Mapel
+mix.js(resource + 'admin/mapel.js', 'public/js/admin/mapel.js')

@@ -36,3 +36,7 @@ Route::apiResource('siswa', 'Siswa\SiswaController');
 // Mapel
 Route::match(['get', 'post'], 'mapel/datatable', 'Mapel\MapelController@dataTable');
 Route::apiResource('mapel', 'Mapel\MapelController');
+
+
+// Paket Soal
+Route::apiResource('paket-soal', 'PaketSoal\PaketSoalController');

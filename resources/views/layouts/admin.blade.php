@@ -103,6 +103,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    // Datatable
+    $.extend( true, $.fn.dataTable.defaults, {
+        language: {
+            url: "{{ asset('assets/plugins/datatables/Indonesian.json') }}"
+        },
+    });
+    // $.fn.dataTable.ext.errMode = 'throw';
 </script>
 @stack('script')
 </body>
