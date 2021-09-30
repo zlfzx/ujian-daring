@@ -17,6 +17,7 @@
                                 <th>No.</th>
                                 <th>Kelas</th>
                                 <th>Mata Pelajaran</th>
+                                <th>Kode Paket</th>
                                 <th>Nama Paket Soal</th>
                                 <th>Keterangan</th>
                                 <th>Opsi</th>
@@ -66,10 +67,47 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal Edit --}}
+    <div class="modal fade" id="modalEdit">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Paket Soal</h5>
+                </div>
+                <form id="formEdit">
+                    <input type="hidden" id="editId">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="editKelas">Kelas</label>
+                            <select name="kelas_id" class="form-control select-kelas" id="editKelas"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editMapel">Mata Pelajaran</label>
+                            <select name="mapel_id" id="editMapel" class="form-control select-mapel"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editkodePaket">Kode Paket</label>
+                            <input name="kode_paket" type="text" class="form-control" id="editKodePaket" placeholder="Masukkan Kode Paket Soal">
+                        </div>
+                        <div class="form-group">
+                            <label for="editNama">Nama</label>
+                            <input name="nama" type="text" class="form-control" id="editNama" placeholder="Masukkan Nama Paket Soal">
+                        </div>
+                        <div class="form-group">
+                            <label for="editKeterangan">Keterangan</label>
+                            <textarea name="keterangan" id="editKeterangan" cols="30" rows="5" class="form-control" placeholder="Masukkan Keterangan"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-sm btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('script')
-    <script>
-        const table = $('#table').DataTable()
-    </script>
+    <script src="{{ asset('js/admin/paket_soal.js') }}"></script>
 @endpush

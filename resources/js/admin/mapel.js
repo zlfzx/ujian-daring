@@ -1,5 +1,3 @@
-require('../app');
-
 const table = $('#table').DataTable({
     processing: true,
     serverSide: true,

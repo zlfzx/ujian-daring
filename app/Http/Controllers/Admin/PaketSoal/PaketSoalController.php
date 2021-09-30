@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin\PaketSoal;
 
 use App\Http\Controllers\Controller;
+use App\Models\PaketSoal;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class PaketSoalController extends Controller
 {
@@ -17,6 +19,18 @@ class PaketSoalController extends Controller
         return view('admin.paket_soal.index');
     }
 
+    public function dataTable()
+    {
+        return DataTables::of(PaketSoal::with('kelas', 'mapel'))
+            ->addIndexColumn()
+            ->addColumn('opsi', function ($data) {
+                return '<button class="btn btn-xs btn-outline-warning btn-edit" data-id="'.$data->id.'" data-kelas-id="'.$data->kelas->id.'" data-kelas-nama="'.$data->kelas->nama.'" data-mapel-id="'.$data->mapel->id.'" data-mapel-nama="'.$data->mapel->nama.'" data-kode="'.$data->kode_paket.'" data-nama="'.$data->nama.'" data-keterangan="'.$data->keterangan.'"><i class="fas fa-edit"></i> Edit</button>
+                <button class="btn btn-xs btn-outline-danger btn-hapus" data-id="'.$data->id.'"><i class="fas fa-trash"></i> Hapus</button>';
+            })
+            ->rawColumns(['opsi'])
+            ->make(true);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -25,7 +39,12 @@ class PaketSoalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paket = PaketSoal::create($request->all());
+
+        return response()->json([
+            'status' => TRUE,
+            'data' => $paket
+        ], 200);
     }
 
     /**
@@ -34,9 +53,12 @@ class PaketSoalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(PaketSoal $paketSoal)
     {
-        //
+        return response()->json([
+            'status' => TRUE,
+            'data' => $paketSoal
+        ], 200);
     }
 
     /**
@@ -48,7 +70,12 @@ class PaketSoalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = PaketSoal::where('id', $id)->update($request->except('_method'));
+
+        return response()->json([
+            'status' => TRUE,
+            'data' => $data
+        ], 200);
     }
 
     /**
@@ -57,8 +84,12 @@ class PaketSoalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PaketSoal $paketSoal)
     {
-        //
+        $paketSoal->delete();
+
+        return response()->json([
+            'status' => TRUE,
+        ], 200);
     }
 }

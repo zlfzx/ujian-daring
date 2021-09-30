@@ -31,6 +31,16 @@ class MapelController extends Controller
             ->make(true);
     }
 
+    public function select2()
+    {
+        $data = Mapel::select('id', 'nama AS text')->get();
+
+        return response()->json([
+            'status' => TRUE,
+            'results' => $data
+        ], 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

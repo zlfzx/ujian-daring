@@ -1,4 +1,4 @@
-require('../app');
+import '../partials/select_rombel'
 
 const table = $('#table').DataTable({
     processing: true,
@@ -14,20 +14,6 @@ const table = $('#table').DataTable({
         { data: 'jenis_kelamin' },
         { data: 'opsi' }
     ]
-})
-
-const selectRombel = $('.select-rombel').select2({
-    theme: 'bootstrap4',
-    placeholder: 'Pilih Rombongan Belajar',
-    ajax: {
-        url: URL_ADMIN + '/rombel/select2',
-        dataType: 'json',
-        data: function (params) {
-            return {
-                term: params.term
-            }
-        }
-    }
 })
 
 // Tambah Siswa
@@ -101,7 +87,7 @@ $(document).on('click', '.btn-hapus', function () {
                 url: URL_ADMIN + '/siswa/' + data.id,
                 type: 'DELETE',
                 success: function (res) {
-                    Swal.fire('Berhail', 'Siswa berhsial dihapus', 'success')
+                    Swal.fire('Berhail', 'Siswa berhasil dihapus', 'success')
                     table.draw()
                 }
             })

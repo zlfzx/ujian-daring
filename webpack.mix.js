@@ -12,11 +12,11 @@ const resource = 'resources/js/';
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-]);
+// mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
+//     require('postcss-import'),
+//     require('tailwindcss'),
+//     require('autoprefixer'),
+// ]);
 
 /*
  | Admin
@@ -33,3 +33,6 @@ mix.js(resource + 'admin/siswa.js', 'public/js/admin/siswa.js');
 
 // Mapel
 mix.js(resource + 'admin/mapel.js', 'public/js/admin/mapel.js')
+
+// Paket Soal
+mix.js(resource + 'admin/paket_soal.js', 'public/js/admin/paket_soal.js')

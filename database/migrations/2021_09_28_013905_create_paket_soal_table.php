@@ -19,6 +19,7 @@ class CreatePaketSoalTable extends Migration
             $table->unsignedBigInteger('mapel_id');
             $table->string('kode_paket');
             $table->string('nama');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }

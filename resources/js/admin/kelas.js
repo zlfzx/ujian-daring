@@ -1,5 +1,3 @@
-require('../app');
-
 const table = $('#table').DataTable({
     processing: true,
     serverSide: true,
@@ -20,15 +18,18 @@ formTambah.addEventListener('submit', function (e) {
     e.preventDefault();
     const form = new FormData(this)
 
-    axios.post(URL_ADMIN + '/kelas', form)
-        .then(function (response) {
-            const res = response.data
-            console.log(res)
-            formTambah.reset()
+    $.post({
+        url: URL_ADMIN + '/kelas',
+        processData: false,
+        contentType: false,
+        data: form,
+        success: function (res) {
+            $(this).trigger('reset')
             modalTambah.modal('hide')
             table.draw()
             Swal.fire('Berhasil', 'Kelas berhasil ditambahkan', 'success')
-        })
+        }
+    })
 })
 
 // Edit Kelas
@@ -48,12 +49,17 @@ formEdit.addEventListener('submit', function (e) {
     const id = document.getElementById('editId').value
     const form = new FormData(this)
 
-    axios.post(URL_ADMIN + '/kelas/' + id, form)
-        .then(function (response) {
+    $.post({
+        url: URL_ADMIN + '/kelas/' + id,
+        processData: false,
+        contentType: false,
+        data: form,
+        success: function (res) {
             Swal.fire('Berhasil', 'Kelas berhasil diperbarui', 'success')
             table.draw()
             modalEdit.modal('hide')
-        })
+        }
+    })
 })
 
 // Hapus Kelas

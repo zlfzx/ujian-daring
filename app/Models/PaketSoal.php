@@ -10,4 +10,16 @@ class PaketSoal extends Model
     use HasFactory;
 
     protected $table = 'paket_soal';
+
+    protected $guarded = [];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
+
+    public function mapel()
+    {
+        return $this->belongsTo(Mapel::class);
+    }
 }
