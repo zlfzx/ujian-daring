@@ -41,5 +41,10 @@ Route::apiResource('mapel', 'Mapel\MapelController');
 
 // Paket Soal
 Route::match(['get', 'post'], 'paket-soal/datatable', 'PaketSoal\PaketSoalController@dataTable');
-Route::match(['get', 'post'], 'paket-soal/select2', 'Mapel\MapelController@select2');
+Route::match(['get', 'post'], 'paket-soal/select2', 'PaketSoal\PaketSoalController@select2');
 Route::apiResource('paket-soal', 'PaketSoal\PaketSoalController');
+
+// Soal
+Route::match(['get', 'post'], 'soal/datatable', 'Soal\SoalController@dataTable');
+// Route::match(['get', 'post'], 'soal/select2', 'Mapel\MapelController@select2');
+Route::resource('soal', 'Soal\SoalController');

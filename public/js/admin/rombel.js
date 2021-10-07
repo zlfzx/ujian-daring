@@ -1,1 +1,198 @@
-(()=>{var a={68:()=>{$(".select-kelas").select2({theme:"bootstrap4",placeholder:"Pilih Kelas",ajax:{url:URL_ADMIN+"/kelas/select2",dataType:"json",data:function(a){return{term:a.term}}}})}},e={};function t(n){var r=e[n];if(void 0!==r)return r.exports;var s=e[n]={exports:{}};return a[n](s,s.exports,t),s.exports}t.n=a=>{var e=a&&a.__esModule?()=>a.default:()=>a;return t.d(e,{a:e}),e},t.d=(a,e)=>{for(var n in e)t.o(e,n)&&!t.o(a,n)&&Object.defineProperty(a,n,{enumerable:!0,get:e[n]})},t.o=(a,e)=>Object.prototype.hasOwnProperty.call(a,e),(()=>{"use strict";t(68);var a=$("#table").DataTable({processing:!0,serverSide:!0,ajax:{url:URL_ADMIN+"/rombel/datatable"},columns:[{data:"index",name:"id"},{data:"kelas.nama",name:"kelas.nama"},{data:"nama",name:"nama"},{data:"opsi",name:"id"}]}),e=$("#modalTambah");$("#formTambah").on("submit",(function(t){t.preventDefault();var n=$(this),r=new FormData(this);$.post({url:URL_ADMIN+"/rombel",processData:!1,contentType:!1,data:r,success:function(t){n.trigger("reset"),e.modal("hide"),Swal.fire("Berhasil","Rombel berhasil ditambahkan","success"),a.draw()}})}));var n=$("#modalEdit");$(document).on("click",".btn-edit",(function(){var a=$(this).data(),e=new Option(a.kelasNama,a.kelasId,!0,!0);$("#editId").val(a.id),$("#editKelas").append(e).trigger("change"),$("#editNama").val(a.nama),n.modal("show")})),$("#formEdit").on("submit",(function(e){e.preventDefault();var t=new FormData(this);t.append("_method","PUT"),$.post({url:URL_ADMIN+"/rombel/"+$("#editId").val(),processData:!1,contentType:!1,data:t,success:function(e){Swal.fire("Berhasil","Rombongan Belajar berhasil diperbarui","success"),a.draw(),n.modal("hide")}})})),$(document).on("click",".btn-hapus",(function(){var e=$(this).data();Swal.fire({title:"Hapus Rombongan Belajar?",icon:"question",html:'<div class="alert alert-danger">Menghapus Rombel akan menghapus data lainnya  yang terkait</div>',showCancelButton:!0,cancelButtonText:"Tidak",confirmButtonText:"Ya, hapus!"}).then((function(t){t.value&&$.ajax({url:URL_ADMIN+"/rombel/"+e.id,type:"DELETE",success:function(e){e.status&&(Swal.fire("Berhasil","Rombongan Belajar berhasil dihapus","success"),a.draw())}})}))}))})()})();
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./resources/js/partials/select_kelas.js":
+/*!***********************************************!*\
+  !*** ./resources/js/partials/select_kelas.js ***!
+  \***********************************************/
+/***/ (() => {
+
+var selectKelas = $('.select-kelas').select2({
+  theme: 'bootstrap4',
+  placeholder: 'Pilih Kelas',
+  ajax: {
+    url: URL_ADMIN + '/kelas/select2',
+    dataType: 'json',
+    data: function data(params) {
+      return {
+        term: params.term
+      };
+    }
+  }
+});
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!**************************************!*\
+  !*** ./resources/js/admin/rombel.js ***!
+  \**************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _partials_select_kelas__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../partials/select_kelas */ "./resources/js/partials/select_kelas.js");
+/* harmony import */ var _partials_select_kelas__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_partials_select_kelas__WEBPACK_IMPORTED_MODULE_0__);
+
+var table = $('#table').DataTable({
+  processing: true,
+  serverSide: true,
+  ajax: {
+    url: URL_ADMIN + '/rombel/datatable'
+  },
+  columns: [{
+    data: 'index',
+    name: 'id'
+  }, {
+    data: 'kelas.nama',
+    name: 'kelas.nama'
+  }, {
+    data: 'nama',
+    name: 'nama'
+  }, {
+    data: 'opsi',
+    name: 'id'
+  }]
+}); // Tambah Rombel
+
+var modalTambah = $('#modalTambah');
+$('#formTambah').on('submit', function (e) {
+  e.preventDefault();
+  var formTambah = $(this);
+  var form = new FormData(this);
+  $.post({
+    url: URL_ADMIN + '/rombel',
+    processData: false,
+    contentType: false,
+    data: form,
+    success: function success(res) {
+      formTambah.trigger('reset');
+      modalTambah.modal('hide');
+      Swal.fire('Berhasil', 'Rombel berhasil ditambahkan', 'success');
+      table.draw();
+    }
+  });
+}); // Edit Rombel
+
+var modalEdit = $('#modalEdit');
+$(document).on('click', '.btn-edit', function () {
+  var data = $(this).data();
+  var option = new Option(data.kelasNama, data.kelasId, true, true);
+  $('#editId').val(data.id);
+  $('#editKelas').append(option).trigger('change');
+  $('#editNama').val(data.nama);
+  modalEdit.modal('show');
+});
+$('#formEdit').on('submit', function (e) {
+  e.preventDefault();
+  var form = new FormData(this);
+  form.append('_method', 'PUT');
+  $.post({
+    url: URL_ADMIN + '/rombel/' + $('#editId').val(),
+    processData: false,
+    contentType: false,
+    data: form,
+    success: function success(res) {
+      Swal.fire('Berhasil', 'Rombongan Belajar berhasil diperbarui', 'success');
+      table.draw();
+      modalEdit.modal('hide');
+    }
+  });
+}); // Hapus rombel
+
+$(document).on('click', '.btn-hapus', function () {
+  var data = $(this).data();
+  Swal.fire({
+    title: "Hapus Rombongan Belajar?",
+    icon: "question",
+    html: '<div class="alert alert-danger">Menghapus Rombel akan menghapus data lainnya  yang terkait</div>',
+    showCancelButton: true,
+    cancelButtonText: "Tidak",
+    confirmButtonText: "Ya, hapus!"
+  }).then(function (hapus) {
+    if (hapus.value) {
+      $.ajax({
+        url: URL_ADMIN + '/rombel/' + data.id,
+        type: 'DELETE',
+        success: function success(res) {
+          if (res.status) {
+            Swal.fire('Berhasil', 'Rombongan Belajar berhasil dihapus', 'success');
+            table.draw();
+          }
+        }
+      });
+    }
+  });
+});
+})();
+
+/******/ })()
+;

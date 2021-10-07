@@ -20,6 +20,8 @@ class CreateSoalPilihanTable extends Migration
             $table->text('media')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
+
+            $table->foreign('soal_id')->on('soal')->references('id')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

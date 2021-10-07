@@ -70,6 +70,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('soal.index') }}" class="nav-link {{ request()->routeIs('soal.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Manajemen Soal
+                        </p>
+                    </a>
+                </li>
 
                 <li class="nav-header">
                     UJIAN

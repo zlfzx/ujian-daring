@@ -24,11 +24,25 @@ class PaketSoalController extends Controller
         return DataTables::of(PaketSoal::with('kelas', 'mapel'))
             ->addIndexColumn()
             ->addColumn('opsi', function ($data) {
-                return '<button class="btn btn-xs btn-outline-warning btn-edit" data-id="'.$data->id.'" data-kelas-id="'.$data->kelas->id.'" data-kelas-nama="'.$data->kelas->nama.'" data-mapel-id="'.$data->mapel->id.'" data-mapel-nama="'.$data->mapel->nama.'" data-kode="'.$data->kode_paket.'" data-nama="'.$data->nama.'" data-keterangan="'.$data->keterangan.'"><i class="fas fa-edit"></i> Edit</button>
-                <button class="btn btn-xs btn-outline-danger btn-hapus" data-id="'.$data->id.'"><i class="fas fa-trash"></i> Hapus</button>';
+                return '<button class="btn btn-xs btn-outline-warning btn-edit" data-id="' . $data->id . '" data-kelas-id="' . $data->kelas->id . '" data-kelas-nama="' . $data->kelas->nama . '" data-mapel-id="' . $data->mapel->id . '" data-mapel-nama="' . $data->mapel->nama . '" data-kode="' . $data->kode_paket . '" data-nama="' . $data->nama . '" data-keterangan="' . $data->keterangan . '"><i class="fas fa-edit"></i> Edit</button>
+                <button class="btn btn-xs btn-outline-danger btn-hapus" data-id="' . $data->id . '"><i class="fas fa-trash"></i> Hapus</button>';
             })
             ->rawColumns(['opsi'])
             ->make(true);
+    }
+
+    public function select2(Request $request)
+    {
+        $data = PaketSoal::select('id', 'nama AS text')
+            ->where([
+                'kelas_id' => $request->kelas_id,
+                'mapel_id' => $request->mapel_id
+            ])->get();
+
+        return response()->json([
+            'status' => TRUE,
+            'results' => $data
+        ], 200);
     }
 
     /**

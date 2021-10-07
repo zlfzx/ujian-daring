@@ -21,6 +21,9 @@ class CreatePaketSoalTable extends Migration
             $table->string('nama');
             $table->text('keterangan');
             $table->timestamps();
+
+            $table->foreign('kelas_id')->on('kelas')->references('id')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('mapel_id')->on('mapel')->references('id')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

@@ -3,5 +3,6 @@
     "/js/admin/rombel.js": "/js/admin/rombel.js",
     "/js/admin/siswa.js": "/js/admin/siswa.js",
     "/js/admin/mapel.js": "/js/admin/mapel.js",
-    "/js/admin/paket_soal.js": "/js/admin/paket_soal.js"
+    "/js/admin/paket_soal.js": "/js/admin/paket_soal.js",
+    "/js/admin/soal_create.js": "/js/admin/soal_create.js"
 }
