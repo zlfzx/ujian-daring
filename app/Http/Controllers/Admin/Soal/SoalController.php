@@ -64,12 +64,10 @@ class SoalController extends Controller
             $soal->save();
 
             foreach ($request->soal_pilihan as $key => $pilihan) {
-                $status = $pilihan['status'] ?? 0;
-
                 $soalPilihan = new SoalPilihan;
                 $soalPilihan->soal_id = $soal->id;
                 $soalPilihan->jawaban = $pilihan['jawaban'];
-                $soalPilihan->status = $status;
+                $soalPilihan->status = $key == $request->jawaban ? 1 : 0;
                 $soalPilihan->save();
             }
             DB::commit();

@@ -65,10 +65,12 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="addPilihan">Pilihan Jawaban</label><br>
-                                    <button type="button" id="btnTambahPilihan" class="btn btn-success" disabled><i
-                                            class="fas fa-plus"></i> Tambah Pilihan Jawaban</button>
+                                <div id="divJawaban">
+                                    <div class="form-group">
+                                        <label for="addPilihan">Jawaban</label><br>
+                                        <button type="button" id="btnTambahPilihan" class="btn btn-success" disabled><i
+                                                class="fas fa-plus"></i> Tambah Pilihan Jawaban</button>
+                                    </div>
                                 </div>
                                 <div id="pilihanJawaban">
 
@@ -118,8 +120,13 @@
 
             if (value == 'pilihan_ganda') {
                 btnTambahPilihan.removeAttr('disabled')
+                divPilihanJawaban.html('')
             } else {
                 btnTambahPilihan.attr('disabled', 'disabled')
+                divPilihanJawaban.html(`
+                <div class="form-group">
+                    <input type="text" name="soal_pilihan[0][jawaban]" class="form-control" placeholder="Masukkan jawaban singkat">
+                </div>`)
             }
 
             $(this).removeClass('is-invalid')
@@ -143,7 +150,7 @@
             <div class="form-group">
                 <div class="custom-control custom-radio mb-2">
                     <input class="custom-control-input" type="radio" id="soal_pilihan${countPilihanJawaban}"
-                        name="soal_pilihan[${countPilihanJawaban}][status]" value="1">
+                        name="jawaban" value="${countPilihanJawaban}">
                     <label for="soal_pilihan${countPilihanJawaban}" class="custom-control-label">Pilihan ${countPilihanJawaban}</label>
                 </div>
                 <textarea name="soal_pilihan[${countPilihanJawaban}][jawaban]" id="" cols="30" rows="10" class="editor-pilihan-jawaban"></textarea>
@@ -171,7 +178,7 @@
                     $('.error').remove()
                 },
                 success: function (res) {
-                    console.log(res)
+                    countPilihanJawaban = 1
                     $('#formTambah').trigger('reset')
                     $('#addSoal').summernote('code', '')
                     divPilihanJawaban.html('')
