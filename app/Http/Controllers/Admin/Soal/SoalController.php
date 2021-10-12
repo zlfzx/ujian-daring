@@ -24,8 +24,30 @@ class SoalController extends Controller
 
     public function datatable(Request $request)
     {
-        return DataTables::of(Soal::where('paket_soal_id', $request->paket_soal_id))
+        $data = new Soal;
+        $data = Soal::with('paketSoal');
+
+        if ($request->kelas_id != null) {
+            $data = $data->whereHas('paketSoal', function ($q) use ($request) {
+                $q->where('kelas_id', $request->kelas_id);
+            });
+        }
+
+        if ($request->mapel_id != null) {
+            $data = $data->whereHas('paketSOal', function ($q) use ($request) {
+                $q->where('mapel_id', $request->mapel_id);
+            });
+        }
+
+        if ($request->paket_soal_id != null) {
+            $data = $data->where('paket_soal_id', $request->paket_soal_id);
+        }
+
+        return DataTables::of($data)
             ->addIndexColumn()
+            ->editColumn('jenis', function ($data) {
+                return ucwords(implode(' ', explode('_', $data->jenis)));
+            })
             ->rawColumns(['pertanyaan'])
             ->make(true);
     }

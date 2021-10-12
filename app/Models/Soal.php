@@ -10,4 +10,9 @@ class Soal extends Model
     use HasFactory;
 
     protected $table = 'soal';
+
+    public function paketSoal()
+    {
+        return $this->belongsTo(PaketSoal::class);
+    }
 }

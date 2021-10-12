@@ -98,6 +98,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Soal</th>
+                                <th>Jenis Soal</th>
                                 <th>Media</th>
                             </tr>
                         </thead>
@@ -211,6 +212,7 @@
             columns: [
                 {data: 'index', name: 'id'},
                 {data: 'pertanyaan'},
+                {data: 'jenis'},
                 {
                     data: 'media', render: function (data, type, row) {
                         if (data) {

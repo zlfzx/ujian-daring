@@ -38,4 +38,5 @@ mix.js(resource + 'admin/mapel.js', 'public/js/admin/mapel.js')
 mix.js(resource + 'admin/paket_soal.js', 'public/js/admin/paket_soal.js')
 
 // Soal
+mix.js(resource + 'admin/soal.js', 'public/js/admin/soal.js')
 mix.js(resource + 'admin/soal_create.js', 'public/js/admin/soal_create.js')
