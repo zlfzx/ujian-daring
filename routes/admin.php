@@ -48,3 +48,8 @@ Route::apiResource('paket-soal', 'PaketSoal\PaketSoalController');
 Route::match(['get', 'post'], 'soal/datatable', 'Soal\SoalController@dataTable');
 // Route::match(['get', 'post'], 'soal/select2', 'Mapel\MapelController@select2');
 Route::resource('soal', 'Soal\SoalController');
+
+
+
+// Pengaturan
+Route::get('pengaturan', 'Pengaturan\PengaturanController@index')->name('pengaturan.index');

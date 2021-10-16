@@ -16,7 +16,7 @@ class CreatePengaturanTable extends Migration
         Schema::create('pengaturan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_institusi');
-            $table->string('slogan');
+            $table->string('tagline');
             $table->text('logo')->nullable();
             $table->string('slug_admin');
             $table->timestamps();
