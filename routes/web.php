@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'HomeController@index')->name('home');
+
+// Ujian
+Route::group(['prefix' => 'ujian'], function () {
+    Route::get('/', 'UjianController@index')->name('ujian');
 });
 
 Route::get('/dashboard', function () {

@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-tools">
+                        <button class="btn btn-success btn-sm"><i class="fas fa-upload"></i> Import Soal</button>
                         <a href="{{ route('soal.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i>
                             Tambah Soal</a>
                     </div>
