@@ -34,5 +34,27 @@
                 </form>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Pengaturan Slug Admin</h4>
+                </div>
+                <form id="form" method="POST" action="{{ route('pengaturan.update-slug') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card-body">
+                        @if (session('success'))
+                            <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
+                        <div class="form-group">
+                            <label for="slug">Slug Admin</label>
+                            <input type="text" name="slug_admin" class="form-control" id="slug" value="{{ $pengaturan->slug_admin }}" placeholder="Atur slug admin">
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection

@@ -29,4 +29,13 @@ class PengaturanController extends Controller
 
         return redirect()->route('pengaturan.index')->with('success', 'Pengaturan berhasil disimpan');
     }
+
+    public function updateSlug(Request $request)
+    {
+        $pengaturan = Pengaturan::first();
+        $pengaturan->slug_admin = $request->slug_admin;
+        $pengaturan->save();
+
+        return redirect($request->slug_admin . '/pengaturan');
+    }
 }
