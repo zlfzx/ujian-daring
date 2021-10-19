@@ -8,23 +8,28 @@
                 <div class="card-header">
                     <h4 class="card-title">Pengaturan Aplikasi</h4>
                 </div>
-                <form id="form">
+                <form id="form" method="POST" action="{{ route('pengaturan.update') }}" enctype="multipart/form-data">
+                    @csrf
                     <div class="card-body">
+                        @if (session('success'))
+                            <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
                         <div class="form-group">
                             <label for="nama">Nama Institusi</label>
-                            <input type="text" class="form-control" id="nama" placeholder="Atur nama institusi">
+                            <input type="text" name="nama_institusi" class="form-control" id="nama" value="{{ $pengaturan->nama_institusi }}" placeholder="Atur nama institusi">
                         </div>
                         <div class="form-group">
-                            <label for="slogan">Tagline</label>
-                            <input type="text" class="form-control" id="slogan" placeholder="Masukkan Tagline">
+                            <label for="tagline">Tagline</label>
+                            <input type="text" name="tagline" class="form-control" id="tagline" value="{{ $pengaturan->tagline }}" placeholder="Masukkan Tagline">
                         </div>
                         <div class="form-group">
-                            <label for="logo">Logo</label>
+                            <label for="logo">Logo</label><br>
+                            <img src="{{ $pengaturan->logo != null ? asset('storage/' . $pengaturan->logo) : '/assets/img/logo.svg' }}" class="my-3" style="width: 150px; height: auto">
                             <input type="file" name="logo" id="logo" class="form-control">
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <button class="btn btn-sm btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>

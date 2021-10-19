@@ -53,3 +53,4 @@ Route::resource('soal', 'Soal\SoalController');
 
 // Pengaturan
 Route::get('pengaturan', 'Pengaturan\PengaturanController@index')->name('pengaturan.index');
+Route::post('pengaturan', 'Pengaturan\PengaturanController@update')->name('pengaturan.update');

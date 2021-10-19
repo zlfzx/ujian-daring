@@ -21,7 +21,7 @@ class PengaturanSeeder extends Seeder
         }
 
         $pengaturan->nama_institusi = 'Ujian Daring';
-        $pengaturan->slogan = 'Lorem ipsum dolor sit amet';
+        $pengaturan->tagline = 'Lorem ipsum dolor sit amet';
         $pengaturan->slug_admin = 'admin';
         $pengaturan->save();
     }
