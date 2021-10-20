@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kelas;
 use App\Models\Rombel;
 use App\Models\Siswa;
 use Faker\Factory;
@@ -17,20 +18,17 @@ class SiswaSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create('id_ID');
+        $rombel = Rombel::first();
+        for ($i = 0; $i < 5; $i++) {
+            $nis = 10000 . $i;
 
-        $rombels = Rombel::get();
-        foreach ($rombels as $key => $rombel) {
-            for ($i=0; $i < 5; $i++) {
-                $siswa = new Siswa;
-                $siswa->rombel_id = $rombel->id;
-                $siswa->nama = $faker->name;
-                $siswa->nis = $faker->randomNumber(6);
-                $siswa->password = Hash::make('siswa');
-                $siswa->jenis_kelamin = $key % 2 == 0 ? 'L' : 'P';
-                $siswa->save();
-            }
+            $siswa = new Siswa;
+            $siswa->rombel_id = $rombel->id;
+            $siswa->nama = " Siswa $i";
+            $siswa->nis = (int)$nis;
+            $siswa->password = Hash::make('siswa');
+            $siswa->jenis_kelamin = $i % 2 == 0 ? 'L' : 'P';
+            $siswa->save();
         }
-
     }
 }

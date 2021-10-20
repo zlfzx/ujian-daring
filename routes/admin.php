@@ -49,7 +49,8 @@ Route::match(['get', 'post'], 'soal/datatable', 'Soal\SoalController@dataTable')
 // Route::match(['get', 'post'], 'soal/select2', 'Mapel\MapelController@select2');
 Route::resource('soal', 'Soal\SoalController');
 
-
+// Ujian
+Route::resource('ujian', 'Ujian\UjianController');
 
 // Pengaturan
 Route::get('pengaturan', 'Pengaturan\PengaturanController@index')->name('pengaturan.index');
