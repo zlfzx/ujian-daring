@@ -183,7 +183,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var table = $('#table').DataTable();
+var table = $('#table').DataTable({
+  processing: true,
+  serverSide: true,
+  ajax: {
+    url: URL_ADMIN + '/ujian/datatable'
+  },
+  columns: [{
+    data: 'index',
+    name: 'id'
+  }, {
+    data: 'nama'
+  }, {
+    data: 'rombel.nama'
+  }, {
+    data: 'paket_soal.nama'
+  }, {
+    data: 'waktu_mulai'
+  }, {
+    data: 'id'
+  }]
+});
 var addWaktuMulai = $('#addWaktu').daterangepicker({
   singleDatePicker: true,
   timePicker: true,

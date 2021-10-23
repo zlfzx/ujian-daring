@@ -50,6 +50,7 @@ Route::match(['get', 'post'], 'soal/datatable', 'Soal\SoalController@dataTable')
 Route::resource('soal', 'Soal\SoalController');
 
 // Ujian
+Route::match(['get', 'post'], 'ujian/datatable', 'Ujian\UjianController@dataTable');
 Route::resource('ujian', 'Ujian\UjianController');
 
 // Pengaturan

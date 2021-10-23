@@ -3,7 +3,21 @@ import '../partials/select_mapel'
 import '../partials/select_rombel'
 import '../partials/select_paket_soal'
 
-const table = $('#table').DataTable()
+const table = $('#table').DataTable({
+    processing: true,
+    serverSide: true,
+    ajax: {
+        url: URL_ADMIN + '/ujian/datatable'
+    },
+    columns: [
+        {data: 'index', name: 'id'},
+        {data: 'nama'},
+        {data: 'rombel.nama'},
+        {data: 'paket_soal.nama'},
+        {data: 'waktu_mulai'},
+        {data: 'id'},
+    ]
+})
 
 const addWaktuMulai = $('#addWaktu').daterangepicker({
     singleDatePicker: true,

@@ -7,6 +7,7 @@ use App\Models\Ujian;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class UjianController extends Controller
 {
@@ -18,6 +19,15 @@ class UjianController extends Controller
     public function index()
     {
         return view('admin.ujian.index');
+    }
+
+    public function dataTable(Request $request)
+    {
+        $data = Ujian::with('rombel:id,nama', 'paketSoal:id,nama');
+
+        return DataTables::of($data)
+        ->addIndexColumn()
+        ->make(true);
     }
 
     /**
