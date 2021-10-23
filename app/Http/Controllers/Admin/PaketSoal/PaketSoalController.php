@@ -37,7 +37,13 @@ class PaketSoalController extends Controller
             ->where([
                 'kelas_id' => $request->kelas_id,
                 'mapel_id' => $request->mapel_id
-            ])->get();
+            ]);
+
+        if ($request->has('type') && $request->type == 'ujian') {
+            $data = $data->has('soal');
+        }
+
+        $data = $data->get();
 
         return response()->json([
             'status' => TRUE,

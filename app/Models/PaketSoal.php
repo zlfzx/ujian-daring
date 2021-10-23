@@ -22,4 +22,9 @@ class PaketSoal extends Model
     {
         return $this->belongsTo(Mapel::class);
     }
+
+    public function soal()
+    {
+        return $this->hasMany(Soal::class);
+    }
 }

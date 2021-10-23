@@ -1,6 +1,7 @@
 const selectPaketSoal = $('.select-paket-soal').select2({
     theme: 'bootstrap4',
     placeholder: 'Pilih Paket Soal',
+    allowClear: true,
     ajax: {
         url: URL_ADMIN + '/paket-soal/select2',
         dataType: 'json',
@@ -8,7 +9,8 @@ const selectPaketSoal = $('.select-paket-soal').select2({
             return {
                 term: params.term,
                 kelas_id: $('.select-kelas').val(),
-                mapel_id: $('.select-mapel').val()
+                mapel_id: $('.select-mapel').val(),
+                type: $('.select-paket-soal').data('type')
             }
         }
     }

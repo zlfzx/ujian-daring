@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin\Ujian;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ujian;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UjianController extends Controller
 {
@@ -35,7 +38,28 @@ class UjianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        $ujian = new Ujian;
+        $ujian->paket_soal_id = $request->paket_soal_id;
+        $ujian->rombel_id = $request->rombel_id;
+        $ujian->nama = $request->nama;
+        $ujian->keterangan = $request->keterangan;
+        $ujian->waktu_mulai = Carbon::parse($request->waktu_mulai)->toDateTime();
+        $ujian->durasi = $request->durasi;
+        $ujian->tampil_hasil = $request->tampil_hasil;
+        $ujian->detail_hasil = $request->detail_hasil;
+
+        if ($request->has('token')) {
+            $ujian->token = strtoupper(Str::random(6));
+        }
+
+        $ujian->save();
+
+        return response()->json([
+            'status' => TRUE,
+            'data' => $ujian
+        ], 200);
     }
 
     /**

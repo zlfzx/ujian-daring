@@ -5,5 +5,6 @@
     "/js/admin/mapel.js": "/js/admin/mapel.js",
     "/js/admin/paket_soal.js": "/js/admin/paket_soal.js",
     "/js/admin/soal.js": "/js/admin/soal.js",
-    "/js/admin/soal_create.js": "/js/admin/soal_create.js"
+    "/js/admin/soal_create.js": "/js/admin/soal_create.js",
+    "/js/admin/ujian.js": "/js/admin/ujian.js"
 }
