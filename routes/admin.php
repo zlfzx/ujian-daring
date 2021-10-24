@@ -13,7 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'DashboardController@index')->name('admin.index');
+Route::get('login', 'AuthController@index')->name('admin.login');
+Route::post('login', 'AuthController@login')->name('admin.post-login');
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/', 'DashboardController@index')->name('admin.index');
+});
 
 // Kelas
 Route::match(['get', 'post'], 'kelas/datatable', 'Kelas\KelasController@dataTable');
