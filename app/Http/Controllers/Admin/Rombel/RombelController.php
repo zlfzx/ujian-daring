@@ -31,9 +31,15 @@ class RombelController extends Controller
         ->make(true);
     }
 
-    public function select2()
+    public function select2(Request $request)
     {
-        $rombel = Rombel::select('id', 'nama AS text')->get();
+        $rombel = Rombel::select('id', 'nama AS text', 'kelas_id')->with('kelas:id,nama');
+
+        if ($request->kelas_id != null) {
+            $rombel = $rombel->where('kelas_id', $request->kelas_id);
+        }
+
+        $rombel = $rombel->get();
 
         return response()->json([
             'status' => TRUE,

@@ -23,7 +23,8 @@ const addWaktuMulai = $('#addWaktu').daterangepicker({
     singleDatePicker: true,
     timePicker: true,
     timePicker24Hour: true,
-    startDate: moment(),
+    startDate: new Date(),
+    minDate: new Date(),
     locale: {
       format: 'D-M-Y hh:mm'
     }

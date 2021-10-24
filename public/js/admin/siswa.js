@@ -16,7 +16,21 @@ var selectRombel = $('.select-rombel').select2({
     dataType: 'json',
     data: function data(params) {
       return {
-        term: params.term
+        term: params.term,
+        kelas_id: $('.select-kelas').val()
+      };
+    },
+    processResults: function processResults(data) {
+      console.log(data);
+      var results = [];
+      data.results.forEach(function (item, index) {
+        results.push({
+          id: item.id,
+          text: item.kelas.nama + ' ' + item.text
+        });
+      });
+      return {
+        results: results
       };
     }
   }
