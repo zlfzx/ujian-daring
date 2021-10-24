@@ -13,15 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+// Auth
+Route::get('login', 'AuthController@index')->name('login');
+Route::post('login', 'AuthController@login')->name('login.post');
 
-// Ujian
-Route::group(['prefix' => 'ujian'], function () {
-    Route::get('/', 'UjianController@index')->name('ujian');
+Route::group(['middleware' => ['auth:siswa']], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+    // Ujian
+    Route::group(['prefix' => 'ujian'], function () {
+        Route::get('/', 'UjianController@index')->name('ujian');
+    });
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
+
+
+    // logout
+    Route::match(['get', 'post'], 'logout', 'AuthController@logout')->name('logout');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';

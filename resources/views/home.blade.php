@@ -22,7 +22,7 @@
                         <img class="profile-user-img img-fluid img-circle" src="/assets/img/user.jpg"
                             alt="User profile picture">
                     </div>
-                    <h3 class="profile-username text-center">Nina Mcintire</h3>
+                    <h3 class="profile-username text-center">{{ auth()->user()->nama }}</h3>
 
 
                     <p class="text-muted text-center">Software Engineer</p>
@@ -39,7 +39,10 @@
                         </li>
                     </ul>
 
-                    <a href="#" class="btn btn-primary btn-block"><b>Keluar</b></a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary btn-block"><b>Keluar</b></button>
+                    </form>
                 </div>
                 <!-- /.card-body -->
             </div>
