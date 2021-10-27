@@ -27,24 +27,36 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-        {{ json_encode($errors->all()) ?? '' }}
+      @if ($errors->has('kredensial'))
+      <div class="alert alert-warning">{{ $errors->first('kredensial') }}</div>
+      @endif
       <form action="{{ route('login.post') }}" method="post">
         @csrf
-        <div class="input-group mb-3">
-          <input type="text" name="nis" class="form-control" placeholder="NIS">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
+        <div class="form-group mb-3">
+            <div class="input-group">
+              <input type="text" name="nis" class="form-control @if($errors->has('nis')) is-invalid @endif" placeholder="NIS">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
             </div>
-          </div>
+            @if($errors->has('nis'))
+            <span class="small text-danger">{{ $errors->first('nis') }}</span>
+            @endif
         </div>
-        <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+        <div class="form-group mb-3">
+            <div class="input-group">
+              <input type="password" name="password" class="form-control @if($errors->has('nis')) is-invalid @endif" placeholder="Password">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
             </div>
-          </div>
+            @if($errors->has('password'))
+            <span class="small text-danger">{{ $errors->first('password') }}</span>
+            @endif
         </div>
         <div class="row">
           <!-- /.col -->

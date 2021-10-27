@@ -27,25 +27,34 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
 
       <form action="{{ route('admin.post-login') }}" method="post">
         @csrf
-        <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+        <div class="form-group mb-3">
+            <div class="input-group">
+              <input type="email" name="email" class="form-control @if($errors->has('email')) is-invalid @endif" placeholder="Email">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
             </div>
-          </div>
+            @if($errors->has('email'))
+            <span class="small text-danger">{{ $errors->first('email') }}</span>
+            @endif
         </div>
-        <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+        <div class="form-group mb-3">
+            <div class="input-group">
+              <input type="password" name="password" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="Password">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
             </div>
-          </div>
+            @if($errors->has('email'))
+            <span class="small text-danger">{{ $errors->first('email') }}</span>
+            @endif
         </div>
         <div class="row">
           <div class="col-8">
@@ -63,10 +72,6 @@
           <!-- /.col -->
         </div>
       </form>
-
-      <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
     </div>
     <!-- /.login-card-body -->
   </div>
