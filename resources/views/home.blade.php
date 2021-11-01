@@ -9,8 +9,9 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae, ratione!
+                        Selamat Datang!
                     </p>
+                    <a href="{{ route('daftar-ujian') }}" class="btn btn-primary">Mulai Ujian</a>
                 </div>
             </div>
         </div>
@@ -25,7 +26,7 @@
                     <h3 class="profile-username text-center">{{ auth()->user()->nama }}</h3>
 
 
-                    <p class="text-muted text-center">Software Engineer</p>
+                    <p class="text-muted text-center">{{ auth()->user()->rombel->nama }}</p>
 
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">

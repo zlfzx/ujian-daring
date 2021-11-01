@@ -225,7 +225,7 @@ var addWaktuMulai = $('#addWaktu').daterangepicker({
   startDate: new Date(),
   minDate: new Date(),
   locale: {
-    format: 'D-M-Y hh:mm'
+    format: 'D-M-Y H:mm'
   }
 });
 $('#tes').daterangepicker(); // form tambah
