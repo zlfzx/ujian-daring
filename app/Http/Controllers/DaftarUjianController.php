@@ -45,4 +45,14 @@ class DaftarUjianController extends Controller
             ->rawColumns(['btnMulai'])
             ->make(true);
     }
+
+    public function show(Ujian $ujian) {
+        $ujian->load('paketSoal');
+
+        if ($ujian->token != null) {
+            $ujian->token = true;
+        }
+
+        return response()->json($ujian);
+    }
 }

@@ -10,4 +10,11 @@ class UjianSiswa extends Model
     use HasFactory;
 
     protected $table = 'ujian_siswa';
+
+    protected $fillable = ['ujian_id', 'siswa_id', 'mulai', 'selesai', 'user_agent'];
+
+    public function ujian()
+    {
+        return $this->belongsTo(Ujian::class);
+    }
 }

@@ -24,11 +24,13 @@ Route::group(['middleware' => ['auth:siswa']], function () {
     Route::group(['prefix' => 'daftar-ujian'], function () {
         Route::get('/', 'DaftarUjianController@index')->name('daftar-ujian');
         Route::post('data', 'DaftarUjianController@data')->name('daftar-ujian.data');
+        Route::post('{ujian}', 'DaftarUjianController@show')->name('daftar-ujan.show');
     });
 
     // Ujian
     Route::group(['prefix' => 'ujian'], function () {
         Route::get('/', 'UjianController@index')->name('ujian');
+        Route::post('mulai', 'UjianController@mulai')->name('ujian.mulai');
     });
 
     Route::get('/dashboard', function () {

@@ -19,8 +19,9 @@ class CreateUjianSiswaTable extends Migration
             $table->unsignedBigInteger('siswa_id');
             $table->dateTime('mulai');
             $table->dateTime('selesai');
-            $table->decimal('nilai');
+            $table->decimal('nilai')->nullable();
             $table->text('user_agent');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
