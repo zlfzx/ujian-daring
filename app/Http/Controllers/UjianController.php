@@ -83,11 +83,22 @@ class UjianController extends Controller
         return response()->json($soal);
     }
 
+    // simpan jawaban
     public function simpanJawaban(Request $request)
     {
         $soal = UjianHasil::findOrFail($request->id);
         $soal->jawaban = $request->jawaban;
         $soal->save();
+
+        return response()->json(true);
+    }
+
+    // selesai ujian
+    public function selesai(Request $request)
+    {
+        $ujian = UjianSiswa::findOrFail($request->ujian_siswa_id);
+        $ujian->status = 1;
+        $ujian->save();
 
         return response()->json(true);
     }

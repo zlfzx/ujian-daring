@@ -34,7 +34,7 @@ table.on('click', '.btn-mulai', function () {
                 $('#divToken').removeClass('d-none').html(`
                 <th>Token</th>
                 <td>
-                    <input type="text" class="form-control" placeholder="Masukkan Token" required>
+                    <input type="text" name="token" class="form-control" placeholder="Masukkan Token" required>
                 </td>`)
             } else {
                 $('#divToken').addClass('d-none').html('')

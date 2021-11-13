@@ -20,7 +20,9 @@ class DaftarUjianController extends Controller
     {
         $data = Ujian::with('paketSoal.mapel')->where([
             'rombel_id' => auth()->user()->rombel_id
-        ]);
+        ])->whereDoesntHave('ujianSiswa', function ($q) {
+            $q->where('siswa_id', auth()->id());
+        });
 
         return DataTables::of($data)
             ->addIndexColumn()

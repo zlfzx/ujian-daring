@@ -97,7 +97,7 @@
                     <div class="row" id="pilihan"></div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-block btn-outline-danger">Akhiri Ujian</button>
+                    <button class="btn btn-block btn-outline-danger" id="btnAkhiri">Akhiri Ujian</button>
                 </div>
             </div>
         </div>

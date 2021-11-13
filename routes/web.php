@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth:siswa']], function () {
 
         Route::post('ragu-ragu', 'UjianController@raguRagu')->name('ujian.ragu-ragu');
         Route::post('simpan-jawaban', 'UjianController@simpanJawaban')->name('ujian.simpan-jawaban');
+        Route::post('selesai', 'UjianController@selesai')->name('ujian.selesai');
     });
 
     Route::get('/dashboard', function () {

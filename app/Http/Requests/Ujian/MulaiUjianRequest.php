@@ -46,10 +46,14 @@ class MulaiUjianRequest extends FormRequest
         return [
             'ujian_id' => [
                 'required',
-                Rule::exists('ujian', 'id')->where('rombel_id', auth()->user()->rombel_id)
+                Rule::exists('ujian', 'id')->where('rombel_id', auth()->user()->rombel_id),
+                Rule::unique('ujian_siswa', 'ujian_id')->where('siswa_id', auth()->id())
             ],
             'is_ujian' => [
                 'in:0'
+            ],
+            'token' => [
+                Rule::exists('ujian', 'token')->where('id', $this->get('ujian_id'))
             ]
         ];
     }
@@ -58,7 +62,9 @@ class MulaiUjianRequest extends FormRequest
     {
         return [
             'ujian_id.exists' => 'Ujian tidak ditemukan',
-            'is_ujian.in' => 'Sedang ada ujian yang aktif'
+            'ujian_id.unique' => 'Anda telah menyelesaikan Ujian tersebut',
+            'is_ujian.in' => 'Sedang ada ujian yang aktif',
+            'token.exists' => 'Token Ujian salah!'
         ];
     }
 

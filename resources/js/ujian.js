@@ -47,6 +47,7 @@ let x = setInterval(() => {
         clearInterval(x);
         timer.innerHTML = 'WAKTU HABIS!';
         timer.style.color = 'red';
+        ujianSelesai()
     }
 }, 1000);
 
@@ -218,3 +219,36 @@ $('#formJawab').on('submit', function (e) {
         }
     })
 })
+
+// Akhiri Ujian
+$('#btnAkhiri').on('click', function () {
+    Swal.fire({
+        title: 'Akhiri Ujian',
+        text: "Anda yakin ingin mengakhiri ujian? Pastikan semua jawaban sudah terisi dengan benar",
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: 'Batal',
+        confirmButtonText: 'Yakin'
+    }).then((done) => {
+        console.log(done)
+        if (done.value) {
+            ujianSelesai()
+        }
+    })
+})
+
+function ujianSelesai() {
+    $.post({
+        url: '/ujian/selesai',
+        data: {
+            ujian_siswa_id: ujianSiswaid
+        },
+        success: function (res) {
+            console.log(res)
+
+            Swal.fire('Ujian Telah Berakhir', 'Anda akan dialihkan ke halaman Beranda', 'success').then(() => {
+                window.location.href = '/'
+            })
+        }
+    })
+}

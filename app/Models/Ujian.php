@@ -21,6 +21,11 @@ class Ujian extends Model
         return $this->belongsTo(PaketSoal::class);
     }
 
+    public function ujianSiswa()
+    {
+        return $this->hasMany(UjianSiswa::class);
+    }
+
     public function ujianHasil()
     {
         return $this->hasMany(UjianHasil::class);
