@@ -31,6 +31,11 @@ Route::group(['middleware' => ['auth:siswa']], function () {
     Route::group(['prefix' => 'ujian'], function () {
         Route::get('/', 'UjianController@index')->name('ujian');
         Route::post('mulai', 'UjianController@mulai')->name('ujian.mulai');
+        Route::get('soal', 'UjianController@soal')->name('ujian.soal');
+        Route::get('daftar-soal', 'UjianController@daftarSoal')->name('ujian.daftar-soal');
+
+        Route::post('ragu-ragu', 'UjianController@raguRagu')->name('ujian.ragu-ragu');
+        Route::post('simpan-jawaban', 'UjianController@simpanJawaban')->name('ujian.simpan-jawaban');
     });
 
     Route::get('/dashboard', function () {

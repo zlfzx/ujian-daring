@@ -13,6 +13,11 @@ class UjianHasil extends Model
 
     public function ujianSiswa()
     {
-        return $this->hasMany(UjianSiswa::class);
+        return $this->belongsTo(UjianSiswa::class);
+    }
+
+    public function soal()
+    {
+        return $this->belongsTo(Soal::class);
     }
 }

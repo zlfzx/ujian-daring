@@ -48,3 +48,4 @@ mix.js(resource + 'admin/ujian.js', 'public/js/admin/ujian.js');
 // ================ //
 // User
 mix.js(resource + 'daftar_ujian.js', 'public/js/daftar_ujian.js');
+mix.js(resource + 'ujian.js', 'public/js/ujian.js');

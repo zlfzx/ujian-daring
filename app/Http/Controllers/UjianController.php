@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Ujian\MulaiUjianRequest;
+use App\Models\PaketSoal;
+use App\Models\Soal;
 use App\Models\Ujian;
+use App\Models\UjianHasil;
 use App\Models\UjianSiswa;
 use Illuminate\Http\Request;
 
@@ -36,8 +39,56 @@ class UjianController extends Controller
         $ujianSiswa->mulai = now();
         $ujianSiswa->selesai = now()->addMinutes($ujian->durasi);
         $ujianSiswa->user_agent = $request->userAgent();
-        // $ujianSiswa->save();
+        $ujianSiswa->save();
 
-        dd($ujianSiswa);
+        // random soal
+        $soal = Soal::where('paket_soal_id', $ujian->paket_soal_id)->inRandomOrder()->get();
+        foreach ($soal as $key => $value) {
+            $hasil = new UjianHasil;
+            $hasil->ujian_siswa_id = $ujianSiswa->id;
+            $hasil->soal_id = $value['id'];
+            $hasil->status = 0;
+            $hasil->save();
+        }
+
+        // dd($ujianSiswa);
+
+        return redirect()->route('ujian');
+    }
+
+    public function soal(Request $request)
+    {
+        // $ujianSiswa = UjianSiswa::with('ujian.paketSoal')->findOrFail($request->ujian_siswa_id);
+        // $soal = Soal::where('paket_soal_id', $ujianSiswa->ujian->paketSoal->id)->with('hasil')->paginate(1);
+
+        $soal = UjianHasil::with('soal.pilihan')->where('ujian_siswa_id', $request->ujian_siswa_id)->paginate(1);
+
+        return response()->json($soal);
+    }
+
+    public function daftarSoal(Request $request)
+    {
+        $soal = UjianHasil::where('ujian_siswa_id', $request->ujian_siswa_id)->get();
+
+        return response()->json($soal);
+    }
+
+    // ragu ragu
+    public function raguRagu(Request $request)
+    {
+        $soal = UjianHasil::findOrFail($request->id);
+        $soal->ragu = $request->ragu;
+        $soal->save();
+
+        return response()->json($soal);
+    }
+
+    public function simpanJawaban(Request $request)
+    {
+        $soal = UjianHasil::findOrFail($request->id);
+        $soal->jawaban = $request->jawaban;
+        $soal->save();
+
+        return response()->json(true);
     }
 }

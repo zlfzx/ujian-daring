@@ -57,38 +57,33 @@
         <div class="col-md-8">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h5 class="card-title m-0">Soal 1</h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi voluptates autem perferendis
-                        dolorem sapiente sed error dicta inventore, voluptatibus officiis sequi libero et illo aliquam quas
-                        debitis. Voluptates, similique vitae.</p>
-                    </p>
-
-                    <div class="form-group">
-                        <div class="custom-control custom-radio">
-                            <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio">
-                            <label for="customRadio1" class="custom-control-label">Custom Radio</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio"
-                                checked="">
-                            <label for="customRadio2" class="custom-control-label">Custom Radio checked</label>
+                    <h5 class="card-title m-0">Soal <span id="noSoal"></span></h5>
+                    <div class="card-tools">
+                        <div class="custom-control custom-checkbox mr-3">
+                            <input class="custom-control-input" type="checkbox" id="btnRagu" value="1">
+                            <label for="btnRagu" class="custom-control-label">Ragu-ragu</label>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-sm btn-primary"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                        <div>
-                            <button class="btn btn-sm btn-warning"><input type="checkbox" name="" id=""> Ragu-ragu</button>
-                            <button class="btn btn-sm btn-success">Simpan</button>
+                <form id="formJawab">
+                    <input type="hidden" name="id" id="ujianHasilId">
+                    <div class="card-body">
+                        <div class="card-text" id="div-soal">
+                            {{-- Soal --}}
                         </div>
-                        <button class="btn btn-sm btn-primary">Selanjutnya <i class="fas fa-arrow-right"></i></button>
 
+                        <div class="form-group mt-2" id="div-jawaban">
+                            {{-- List Jawaban --}}
+                        </div>
                     </div>
-                </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-sm btn-primary" id="btnPrev"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                            <button type="submit" class="btn btn-sm btn-outline-success">Simpan</button>
+                            <button type="button" class="btn btn-sm btn-primary" id="btnNext">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -99,42 +94,7 @@
                 </div>
                 <div class="card-body">
                     <h3 id="timer" class="text-center">00:00:00</h3>
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <button class="btn btn-sm btn-block btn-outline-primary">1</button>
-                        </div>
-                    </div>
-
+                    <div class="row" id="pilihan"></div>
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-block btn-outline-danger">Akhiri Ujian</button>
@@ -142,48 +102,16 @@
             </div>
         </div>
 
-        {!! json_encode($ujianSiswa) !!}
+        {{-- {!! json_encode($ujianSiswa) !!} --}}
     </div>
 @endsection
 
 @push('script')
     <script>
+        const ujianSiswaid = '{{ $ujianSiswa->id }}';
+        const ujianId = '{{ $ujianSiswa->ujian_id }}';
+        const paketSoalId = '{{ $ujianSiswa->ujian->paket_soal_id }}';
         const end = new Date('{{ $ujianSiswa->selesai }}').getTime()
-
-        let x = setInterval(() => {
-            const timer = document.getElementById('timer')
-            let now = new Date().getTime()
-            let distance = end - now;
-
-            // calc
-            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // warning
-            if (hours == 0 && minutes < 5) {
-                timer.style.color = 'red';
-            }
-
-            //
-            if (hours < 10) {
-                hours = "0" + hours
-            }
-            if (minutes < 10) {
-                minutes = "0" + minutes
-            }
-            if (seconds < 10) {
-                seconds = "0" + seconds
-            }
-
-            // show timer
-            timer.innerHTML = hours + ":" + minutes + ":" + seconds;
-
-            if (distance < 0) {
-                clearInterval(x);
-                timer.innerHTML = 'WAKTU HABIS!';
-                timer.style.color = 'red';
-            }
-        }, 1000);
     </script>
+    <script src="{{ asset('js/ujian.js') }}"></script>
 @endpush

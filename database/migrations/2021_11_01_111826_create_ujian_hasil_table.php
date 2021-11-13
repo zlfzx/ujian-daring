@@ -17,7 +17,8 @@ class CreateUjianHasilTable extends Migration
             $table->id();
             $table->unsignedBigInteger('ujian_siswa_id');
             $table->unsignedBigInteger('soal_id');
-            $table->string('jawaban');
+            $table->string('jawaban')->nullable();
+            $table->integer('ragu')->nullable();
             $table->integer('status');
             $table->timestamps();
         });
