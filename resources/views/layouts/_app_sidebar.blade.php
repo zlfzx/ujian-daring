@@ -27,20 +27,15 @@
                     UJIAN
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('daftar-ujian') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Daftar Ujian
-                        </p>
+                        <p>Daftar Ujian</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('riwayat-ujian') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Ujian Aktif
-                            <span class="right badge badge-danger">0</span>
-                        </p>
+                        <p>Riwayat Ujian</p>
                     </a>
                 </li>
 

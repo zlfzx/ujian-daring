@@ -21,10 +21,17 @@ Route::post('login', 'AuthController@login')->name('login.post');
 Route::group(['middleware' => ['auth:siswa']], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
+    // daftar ujian
     Route::group(['prefix' => 'daftar-ujian'], function () {
         Route::get('/', 'DaftarUjianController@index')->name('daftar-ujian');
         Route::post('data', 'DaftarUjianController@data')->name('daftar-ujian.data');
         Route::post('{ujian}', 'DaftarUjianController@show')->name('daftar-ujan.show');
+    });
+
+    // riwayat ujian
+    Route::group(['prefix' => 'riwayat-ujian'], function () {
+        Route::get('/', 'RiwayatUjianController@index')->name('riwayat-ujian');
+        Route::get('data', 'RiwayatUjianController@data')->name('riwayat-ujian.data');
     });
 
     // Ujian
