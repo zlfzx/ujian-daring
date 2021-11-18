@@ -17,4 +17,14 @@ class UjianSiswa extends Model
     {
         return $this->belongsTo(Ujian::class);
     }
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
+
+    public function ujianHasil()
+    {
+        return $this->hasMany(UjianHasil::class);
+    }
 }

@@ -74,7 +74,7 @@
                     <a href="{{ route('soal.index') }}" class="nav-link {{ request()->routeIs('soal.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
-                            Manajemen Soal
+                            Daftar Soal
                         </p>
                     </a>
                 </li>
@@ -83,27 +83,22 @@
                     UJIAN
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('ujian.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Daftar Ujian</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('ujian.riwayat') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Riwayat Ujian</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Pengaturan Ujian
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('ujian.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Daftar Ujian
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Ujian Aktif
-                            <span class="right badge badge-danger">0</span>
                         </p>
                     </a>
                 </li>

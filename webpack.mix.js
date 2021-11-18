@@ -43,6 +43,8 @@ mix.js(resource + 'admin/soal_create.js', 'public/js/admin/soal_create.js')
 
 // Ujian
 mix.js(resource + 'admin/ujian.js', 'public/js/admin/ujian.js');
+mix.js(resource + 'admin/riwayat_ujian.js', 'public/js/admin/riwayat_ujian.js');
+mix.js(resource + 'admin/riwayat_ujian_hasil.js', 'public/js/admin/riwayat_ujian_hasil.js');
 
 
 // ================ //

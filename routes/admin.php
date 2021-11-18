@@ -59,6 +59,12 @@ Route::resource('soal', 'Soal\SoalController');
 Route::match(['get', 'post'], 'ujian/datatable', 'Ujian\UjianController@dataTable');
 Route::resource('ujian', 'Ujian\UjianController');
 
+// Riwayat Ujian
+Route::get('riwayat-ujian/', 'Ujian\RiwayatUjianController@index')->name('ujian.riwayat');
+Route::get('riwayat-ujian/datatable', 'Ujian\RiwayatUjianController@dataTable')->name('ujian.riwayat.data');
+Route::get('riwayat-ujian/hasil', 'Ujian\RiwayatUjianController@hasilUjian')->name('ujian.riwayat.hasilUjian');
+Route::get('riwayat-ujian/{ujian}', 'Ujian\RiwayatUjianController@show')->name('ujian.riwayat.show');
+
 // Pengaturan
 Route::get('pengaturan', 'Pengaturan\PengaturanController@index')->name('pengaturan.index');
 Route::post('pengaturan', 'Pengaturan\PengaturanController@update')->name('pengaturan.update');

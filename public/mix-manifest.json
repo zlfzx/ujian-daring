@@ -7,6 +7,8 @@
     "/js/admin/soal.js": "/js/admin/soal.js",
     "/js/admin/soal_create.js": "/js/admin/soal_create.js",
     "/js/admin/ujian.js": "/js/admin/ujian.js",
+    "/js/admin/riwayat_ujian.js": "/js/admin/riwayat_ujian.js",
+    "/js/admin/riwayat_ujian_hasil.js": "/js/admin/riwayat_ujian_hasil.js",
     "/js/daftar_ujian.js": "/js/daftar_ujian.js",
     "/js/ujian.js": "/js/ujian.js"
 }
