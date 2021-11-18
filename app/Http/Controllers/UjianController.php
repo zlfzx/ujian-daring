@@ -92,6 +92,14 @@ class UjianController extends Controller
         if ($soal->soal->jenis == 'pilihan_ganda') {
             if ($soal->soal->pilihanBenar->id == $soal->jawaban) {
                 $soal->status = 1;
+            } else {
+                $soal->status = 0;
+            }
+        } else {
+            if (strtolower($soal->soal->pilihanBenar->jawaban) == $soal->jawaban) {
+                $soal->status = 1;
+            } else {
+                $soal->status = 0;
             }
         }
 
