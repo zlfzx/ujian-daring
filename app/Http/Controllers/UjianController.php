@@ -86,8 +86,15 @@ class UjianController extends Controller
     // simpan jawaban
     public function simpanJawaban(Request $request)
     {
-        $soal = UjianHasil::findOrFail($request->id);
+        $soal = UjianHasil::with('soal.pilihanBenar')->findOrFail($request->id);
         $soal->jawaban = $request->jawaban;
+
+        if ($soal->soal->jenis == 'pilihan_ganda') {
+            if ($soal->soal->pilihanBenar->id == $soal->jawaban) {
+                $soal->status = 1;
+            }
+        }
+
         $soal->save();
 
         return response()->json(true);

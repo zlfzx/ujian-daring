@@ -16,6 +16,11 @@ class Soal extends Model
         return $this->hasMany(SoalPilihan::class);
     }
 
+    public function pilihanBenar()
+    {
+        return $this->hasOne(SoalPilihan::class)->where('status', 1);
+    }
+
     public function paketSoal()
     {
         return $this->belongsTo(PaketSoal::class);
