@@ -21,6 +21,7 @@ class CreateUjianTable extends Migration
             $table->text('keterangan')->nullable();
             $table->dateTime('waktu_mulai');
             $table->integer('durasi');
+            $table->decimal('bobot')->nullable();
             $table->decimal('poin_benar')->nullable();
             $table->decimal('poin_salah')->nullable();
             $table->decimal('poin_tidak_jawab')->nullable();
