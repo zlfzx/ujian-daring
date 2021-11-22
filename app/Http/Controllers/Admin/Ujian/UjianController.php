@@ -61,6 +61,10 @@ class UjianController extends Controller
         $ujian->tampil_hasil = $request->tampil_hasil;
         $ujian->detail_hasil = $request->detail_hasil;
 
+        // $ujian->poin_benar = $request->poin_benar;
+        // $ujian->poin_salah = $request->poin_salah;
+        // $ujian->poin_tidak_jawab = $request->poin_tidak_jawab;
+
         if ($request->has('token')) {
             $ujian->token = strtoupper(Str::random(6));
         }

@@ -99,6 +99,33 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <hr>
+                            {{-- </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="inputBobot">Bobot</label>
+                                    <input type="number" name="bobot" id="inputBobot" class="form-control" value="0">
+                                </div>
+                            </div> --}}
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="inputPoinBenar">Poin Benar</label>
+                                    <input type="number" name="poin_benar" id="inputPoinBenar" class="form-control" value="0">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="inputPoinSalah">Poin Salah</label>
+                                    <input type="number" name="poin_salah" id="inputPoinSalah" class="form-control" value="0">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="inputPoinTidakJawab">Poin Tidak Jawab</label>
+                                    <input type="number" name="poin_tidak_jawab" id="inputPoinTidakJawab" class="form-control" value="0">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

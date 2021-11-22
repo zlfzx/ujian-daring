@@ -105,6 +105,8 @@ class UjianController extends Controller
 
         $soal->save();
 
+        $this->_hitungNilai($soal->ujian_siswa_id);
+
         return response()->json(true);
     }
 
@@ -115,6 +117,28 @@ class UjianController extends Controller
         $ujian->status = 1;
         $ujian->save();
 
+        $this->_hitungNilai($ujian->id);
+
         return response()->json(true);
+    }
+
+    private function _hitungNilai($ujianSiswaId)
+    {
+        $ujianSiswa = UjianSiswa::with('ujianHasil')->findOrFail($ujianSiswaId);
+        $jumlahSoal = count($ujianSiswa->ujianHasil);
+
+        $benar = 0;
+        foreach ($ujianSiswa->ujianHasil as $key => $value) {
+            if ($value['status'] == 1) {
+                $benar++;
+            }
+        }
+
+        $nilai = ($benar / $jumlahSoal) *  100;
+
+        $ujianSiswa->nilai = $nilai;
+        $ujianSiswa->save();
+
+        return $nilai;
     }
 }
