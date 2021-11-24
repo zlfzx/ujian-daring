@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Ujian;
 use App\Http\Controllers\Controller;
 use App\Models\Ujian;
 use App\Models\UjianHasil;
+use App\Models\UjianSiswa;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -32,9 +33,21 @@ class RiwayatUjianController extends Controller
 
     public function show(Ujian $ujian)
     {
-        $ujian->load([
-            'ujianSiswa.siswa'
-        ]);
+        if (request()->ajax()) {
+            $data = UjianSiswa::with('siswa')->where('ujian_id', $ujian->id);
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->editColumn('nilai', function ($data) {
+                    return $data->nilai ?? 0;
+                })
+                ->addColumn('opsi', function ($data) {
+
+                    return '<button class="btn btn-xs btn-primary btn-hasil" data-id="'.$data->id.'">Hasil</button>';
+                })
+                ->rawColumns(['opsi'])
+                ->make(true);
+        }
 
         return view('admin.ujian.hasil', compact('ujian'));
     }
@@ -49,10 +62,10 @@ class RiwayatUjianController extends Controller
                 if ($data->soal->jenis == 'pilihan_ganda') {
                     $jawaban = $data->soal->pilihan->find($data->jawaban);
 
-                    return $jawaban->jawaban;
+                    return $jawaban->jawaban ?? '-';
                 }
 
-                return $data->jawaban;
+                return $data->jawaban ?? '-';
             })
             ->editColumn('status', function ($data) {
                 if ($data->status == 0) {

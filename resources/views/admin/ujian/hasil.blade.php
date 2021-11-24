@@ -39,6 +39,7 @@
 
                 <hr>
 
+                <button class="btn btn-sm btn-primary mb-3" id="refreshTable"><i id="iconRefresh" class="fas fa-sync"></i> Refresh Data</button>
                 <table class="table table-striped" id="table">
                     <thead>
                         <tr>
@@ -50,22 +51,6 @@
                             <th>Opsi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @forelse ($ujian->ujianSiswa as $siswa)
-                            <tr>
-                                <td>{{ $loop->iteration }}.</td>
-                                <td>{{ $siswa->siswa->nama }}</td>
-                                <td>{{ $siswa->mulai }}</td>
-                                <td>{{ $siswa->selesai }}   </td>
-                                <td>{{ $siswa->nilai ?? 0 }}</td>
-                                <td>
-                                    <button class="btn btn-xs btn-primary btn-hasil" data-id="{{ $siswa->id }}">Hasil</button>
-                                </td>
-                            </tr>
-                        @empty
-
-                        @endforelse
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -98,5 +83,8 @@
 @endsection
 
 @push('script')
+    <script>
+        const ujianId = "{{ $ujian->id }}"
+    </script>
     <script src="{{ asset('js/admin/riwayat_ujian_hasil.js') }}"></script>
 @endpush
