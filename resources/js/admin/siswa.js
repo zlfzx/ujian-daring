@@ -98,3 +98,24 @@ $(document).on('click', '.btn-hapus', function () {
         }
     })
 })
+
+
+// import siswa
+const modalImport = $('#modalImport')
+$('#formImport').on('submit', function (e) {
+    e.preventDefault()
+    let data = new FormData(this)
+
+    $.post({
+        url: URL_ADMIN + '/siswa/import',
+        data: data,
+        contentType: false,
+        processData: false,
+        success: function (res) {
+            if (res.status) {
+                table.draw()
+                modalImport.modal('hide')
+            }
+        }
+    })
+})

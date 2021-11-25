@@ -101,8 +101,8 @@
                             </div>
                             <div class="col-md-12">
                                 <hr>
-                            {{-- </div>
-                            <div class="col-md-3">
+                            </div>
+                            {{-- <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="inputBobot">Bobot</label>
                                     <input type="number" name="bobot" id="inputBobot" class="form-control" value="0">

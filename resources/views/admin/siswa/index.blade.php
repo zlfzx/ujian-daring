@@ -7,6 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-tools">
+                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalImport"><i class="fas fa-upload"></i> Import Siswa</button>
                     <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTambah"><i class="fas fa-plus"></i> Tambah Siswa</button>
                 </div>
             </div>
@@ -85,7 +86,7 @@
                     <div class="form-group">
                         <label for="editNama">Nama Siswa</label>
                         <input type="text" name="nama" class="form-control" id="editNama" placeholder="Masukkan Nama Siswa">
-                    </div>$value
+                    </div>
                     <div class="form-group">
                         <label for="editNis">NIS</label>
                         <input type="text" name="nis" class="form-control" id="editNis" placeholder="Masukan NIS Siswa">
@@ -105,6 +106,36 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-sm btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{-- Modal Import --}}
+<div class="modal fade" id="modalImport">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Import Siswa</h4>
+                <button class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form id="formImport">
+                <div class="modal-body">
+                    <p>Download contoh format excel : <a href="{{ asset('import/import_siswa.xlsx') }}" class="btn btn-xs btn-primary" download="import_siswa">Download</a></p>
+                    <div class="form-group">
+                        <label for="importRombel">Rombel</label>
+                        <select name="rombel_id" id="mportSelectRombel" class="form-control select-rombel" required></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="importExcel">File</label>
+                        <input type="file" name="file" id="importExcel" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary">Simpan</button>
+                    <button class="btn btn-sm btn-default" data-dismiss="modal">Tutup</button>
                 </div>
             </form>
         </div>

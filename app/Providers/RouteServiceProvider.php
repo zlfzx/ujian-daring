@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $slugAdmin = 'admin';
-        if (Schema::hasTable('pengaturan')) {
+        if (!app()->runningInConsole() && Schema::hasTable('pengaturan')) {
             $pengaturan = Pengaturan::first();
             $slugAdmin = $pengaturan->slug_admin;
         }

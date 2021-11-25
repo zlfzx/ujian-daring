@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin\Siswa;
 
 use App\Http\Controllers\Controller;
+use App\Imports\SiswaImport;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class SiswaController extends Controller
@@ -48,6 +50,15 @@ class SiswaController extends Controller
             'status' => TRUE,
             'data' => $siswa
         ], 200);
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new SiswaImport($request->rombel_id), $request->file('file'));
+
+        return response()->json([
+            'status' => TRUE
+        ]);
     }
 
     /**

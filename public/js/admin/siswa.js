@@ -1,1 +1,237 @@
-(()=>{var a={234:()=>{$(".select-rombel").select2({theme:"bootstrap4",placeholder:"Pilih Rombongan Belajar",allowClear:!0,ajax:{url:URL_ADMIN+"/rombel/select2",dataType:"json",data:function(a){return{term:a.term,kelas_id:$(".select-kelas").val()}},processResults:function(a){console.log(a);var e=[];return a.results.forEach((function(a,t){e.push({id:a.id,text:a.kelas.nama+" "+a.text})})),{results:e}}}})}},e={};function t(s){var n=e[s];if(void 0!==n)return n.exports;var r=e[s]={exports:{}};return a[s](r,r.exports,t),r.exports}t.n=a=>{var e=a&&a.__esModule?()=>a.default:()=>a;return t.d(e,{a:e}),e},t.d=(a,e)=>{for(var s in e)t.o(e,s)&&!t.o(a,s)&&Object.defineProperty(a,s,{enumerable:!0,get:e[s]})},t.o=(a,e)=>Object.prototype.hasOwnProperty.call(a,e),(()=>{"use strict";t(234);var a=$("#table").DataTable({processing:!0,serverSide:!0,ajax:{url:URL_ADMIN+"/siswa/datatable"},columns:[{data:"index",name:"id"},{data:"rombel.nama",name:"rombel.nama",render:function(a,e,t){return t.rombel.kelas.nama+" "+a}},{data:"nama"},{data:"nis"},{data:"jenis_kelamin"},{data:"opsi"}]}),e=$("#modalTambah");$("#formTambah").on("submit",(function(t){t.preventDefault();var s=new FormData(this);$.post({url:URL_ADMIN+"/siswa",processData:!1,contentType:!1,data:s,success:function(t){e.modal("hide"),$(this).trigger("reset"),Swal.fire("Berhasil","Siswa berhasil ditambahkan","success"),a.draw()}})}));var s=$("#modalEdit");$(document).on("click",".btn-edit",(function(){var a=$(this).data();console.log(a);var e=new Option(a.rombelNama,a.rombelId,!0,!0);$("#editId").val(a.id),$("#editRombel").append(e).trigger("change"),$("#editNama").val(a.nama),$("#editNis").val(a.nis),$("#editJenisKelamin").val(a.jenisKelamin).trigger("change"),s.modal("show")})),$("#formEdit").on("submit",(function(e){e.preventDefault();$(this);var t=new FormData(this);t.append("_method","PUT"),$.post({url:URL_ADMIN+"/siswa/"+$("#editId").val(),processData:!1,contentType:!1,data:t,success:function(e){Swal.fire("Berhasil","Siswa berhasil diperbarui","success"),a.draw(),s.modal("hide")}})})),$(document).on("click",".btn-hapus",(function(){var e=$(this).data();Swal.fire({title:"Hapus Siswa",icon:"question",html:'<div class="alert alert-danger">Menghapus siswa akan menghapus data launnya yang terkait</div>',showCancelButton:!0,cancelButtonText:"Tidak",confirmButtonText:"Ya, hapus!"}).then((function(t){t.value&&$.ajax({url:URL_ADMIN+"/siswa/"+e.id,type:"DELETE",success:function(e){Swal.fire("Berhail","Siswa berhasil dihapus","success"),a.draw()}})}))}))})()})();
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./resources/js/partials/select_rombel.js":
+/*!************************************************!*\
+  !*** ./resources/js/partials/select_rombel.js ***!
+  \************************************************/
+/***/ (() => {
+
+var selectRombel = $('.select-rombel').select2({
+  theme: 'bootstrap4',
+  placeholder: 'Pilih Rombongan Belajar',
+  allowClear: true,
+  ajax: {
+    url: URL_ADMIN + '/rombel/select2',
+    dataType: 'json',
+    data: function data(params) {
+      return {
+        term: params.term,
+        kelas_id: $('.select-kelas').val()
+      };
+    },
+    processResults: function processResults(data) {
+      console.log(data);
+      var results = [];
+      data.results.forEach(function (item, index) {
+        results.push({
+          id: item.id,
+          text: item.kelas.nama + ' ' + item.text
+        });
+      });
+      return {
+        results: results
+      };
+    }
+  }
+});
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!*************************************!*\
+  !*** ./resources/js/admin/siswa.js ***!
+  \*************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _partials_select_rombel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../partials/select_rombel */ "./resources/js/partials/select_rombel.js");
+/* harmony import */ var _partials_select_rombel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_partials_select_rombel__WEBPACK_IMPORTED_MODULE_0__);
+
+var table = $('#table').DataTable({
+  processing: true,
+  serverSide: true,
+  ajax: {
+    url: URL_ADMIN + '/siswa/datatable'
+  },
+  columns: [{
+    data: 'index',
+    name: 'id'
+  }, {
+    data: 'rombel.nama',
+    name: 'rombel.nama',
+    render: function render(data, type, row) {
+      return row.rombel.kelas.nama + ' ' + data;
+    }
+  }, {
+    data: 'nama'
+  }, {
+    data: 'nis'
+  }, {
+    data: 'jenis_kelamin'
+  }, {
+    data: 'opsi'
+  }]
+}); // Tambah Siswa
+
+var modalTambah = $('#modalTambah');
+$('#formTambah').on('submit', function (e) {
+  e.preventDefault();
+  var form = new FormData(this);
+  $.post({
+    url: URL_ADMIN + '/siswa',
+    processData: false,
+    contentType: false,
+    data: form,
+    success: function success(res) {
+      modalTambah.modal('hide');
+      $(this).trigger('reset');
+      Swal.fire('Berhasil', 'Siswa berhasil ditambahkan', 'success');
+      table.draw();
+    }
+  });
+}); // Edit Siswa
+
+var modalEdit = $('#modalEdit');
+$(document).on('click', '.btn-edit', function () {
+  var data = $(this).data();
+  console.log(data);
+  var option = new Option(data.rombelNama, data.rombelId, true, true);
+  $('#editId').val(data.id);
+  $('#editRombel').append(option).trigger('change');
+  $('#editNama').val(data.nama);
+  $('#editNis').val(data.nis);
+  $('#editJenisKelamin').val(data.jenisKelamin).trigger('change');
+  modalEdit.modal('show');
+});
+$('#formEdit').on('submit', function (e) {
+  e.preventDefault();
+  var formEdit = $(this);
+  var form = new FormData(this);
+  form.append('_method', 'PUT');
+  $.post({
+    url: URL_ADMIN + '/siswa/' + $('#editId').val(),
+    processData: false,
+    contentType: false,
+    data: form,
+    success: function success(res) {
+      Swal.fire('Berhasil', 'Siswa berhasil diperbarui', 'success');
+      table.draw();
+      modalEdit.modal('hide');
+    }
+  });
+}); // Hapus Siswa
+
+$(document).on('click', '.btn-hapus', function () {
+  var data = $(this).data();
+  Swal.fire({
+    title: "Hapus Siswa",
+    icon: 'question',
+    html: '<div class="alert alert-danger">Menghapus siswa akan menghapus data launnya yang terkait</div>',
+    showCancelButton: true,
+    cancelButtonText: "Tidak",
+    confirmButtonText: "Ya, hapus!"
+  }).then(function (hapus) {
+    if (hapus.value) {
+      $.ajax({
+        url: URL_ADMIN + '/siswa/' + data.id,
+        type: 'DELETE',
+        success: function success(res) {
+          Swal.fire('Berhail', 'Siswa berhasil dihapus', 'success');
+          table.draw();
+        }
+      });
+    }
+  });
+}); // import siswa
+
+var modalImport = $('#modalImport');
+$('#formImport').on('submit', function (e) {
+  e.preventDefault();
+  var data = new FormData(this);
+  $.post({
+    url: URL_ADMIN + '/siswa/import',
+    data: data,
+    contentType: false,
+    processData: false,
+    success: function success(res) {
+      if (res.status) {
+        table.draw();
+        modalImport.modal('hide');
+      }
+    }
+  });
+});
+})();
+
+/******/ })()
+;
